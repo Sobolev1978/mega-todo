@@ -12,8 +12,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, '../client', 'build')));
 
-app.use('tasks', taskRouter);
-app.use('auth', authRouter);
+app.use('api/tasks', taskRouter);
+app.use('api/auth', authRouter);
 mongoose.connect(process.env.MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true });
 
 app.get('*', (req, res) => {
