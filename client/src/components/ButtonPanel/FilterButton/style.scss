@@ -1,0 +1,15 @@
+.filter_btn {
+  display: block;
+  background-color: transparent;
+  padding: 10px 5px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  color: #333333;
+  outline: none;
+
+  &.active {
+    border: 1px solid #c1c1c1;
+  }
+}

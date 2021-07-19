@@ -1,0 +1,23 @@
+.todo_input {
+  font-size: 16px;
+  width: 100%;
+  display: block;
+  background-color: transparent;
+  padding: 10px;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 1px solid #c1c1c1;
+  color: #777;
+  outline: none;
+  &:focus {
+    color: #777;
+  }
+  &::placeholder{
+    color: #777;
+  }
+}
+
+.input_panel {
+  padding: 20px 20px 10px 20px;
+  box-sizing: border-box;
+}
