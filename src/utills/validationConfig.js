@@ -35,4 +35,4 @@ exports.addTaskValidation = [
 exports.accessTaskValidation = [
   body('id')
     .notEmpty({ ignore_whitespace: false }).withMessage('Task id is required')
-]
+];
