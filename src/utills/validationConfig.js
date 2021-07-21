@@ -29,10 +29,10 @@ exports.authValidation = [
 
 exports.addTaskValidation = [
   body('name')
-    .notEmpty({ ignore_whitespace: false }).withMessage('The task must have a name')
+    .notEmpty({ ignore_whitespace: true }).withMessage('The task must have a name')
 ];
 
 exports.accessTaskValidation = [
   body('id')
-    .notEmpty({ ignore_whitespace: false }).withMessage('Task id is required')
+    .notEmpty({ ignore_whitespace: true }).withMessage('Task id is required')
 ];
