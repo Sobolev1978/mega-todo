@@ -7,7 +7,7 @@ exports.authValidation = [
     .withMessage('Username should be at least 3 characters long')
     .isLength({ max: 30 })
     .withMessage('Username should be less than 30 characters')
-    .notEmpty({ ignore_whitespace: false })
+    .notEmpty({ ignore_whitespace: true })
     .withMessage('Please input your username!'),
 
   body('password')
@@ -15,7 +15,7 @@ exports.authValidation = [
     .withMessage('Password should be at least 6 characters long')
     .isLength({ max: 30 })
     .withMessage('Your password must not exceed 30 characters')
-    .notEmpty({ ignore_whitespace: false })
+    .notEmpty({ ignore_whitespace: true })
     .withMessage('Please input your password!')
     .matches(/(?=.*[0-9])/)
     .withMessage('The password must contain at least one number')
