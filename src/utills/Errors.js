@@ -1,3 +1,4 @@
+// eslint-disable-next-line max-classes-per-file
 const statusCodes = require('./statusCodes');
 
 class MainError extends Error {
@@ -13,7 +14,7 @@ class MainError extends Error {
       status: 'error',
       error: {
         type: this.errorType,
-        message: this.message,
+        message: this.message
       }
     };
   }
@@ -31,7 +32,7 @@ class ValidationError extends MainError {
       error: {
         type: this.errorType,
         message: this.message,
-        errors: this.errors,
+        errors: this.errors
       }
     };
   }
@@ -81,5 +82,5 @@ module.exports = {
   UnauthorizedError,
   TokenExpired,
   TokenInvalid,
-  ValidationError,
+  ValidationError
 };

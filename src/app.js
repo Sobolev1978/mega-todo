@@ -13,7 +13,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/api/tasks', taskRouter);
 app.use('/api/auth', authRouter);
-mongoose.connect(process.env.MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true
+});
 app.use(express.static(path.join(__dirname, '../client', 'build')));
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client', 'build', 'index.html'));

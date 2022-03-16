@@ -5,17 +5,18 @@ const { ValidationError } = require('../../utills/Errors');
 
 exports.postRegistration = async (req, res, next) => {
   try {
-    const {
-      login,
-      password
-    } = req.body;
+    const { login, password } = req.body;
 
     if (await User.exists({ login })) {
-      return next(new ValidationError([{
-        key: 'registration',
-        msg: 'User by this login already exists',
-        path: 'password'
-      }]));
+      return next(
+        new ValidationError([
+          {
+            key: 'registration',
+            msg: 'User by this login already exists',
+            path: 'password'
+          }
+        ])
+      );
     }
 
     const user = new User({
@@ -23,42 +24,48 @@ exports.postRegistration = async (req, res, next) => {
       password
     });
     await user.save();
-    return res.status(201)
-      .json({ message: 'Created' });
-  } catch (error) {
+    return res.status(201).json({ message: 'Created' });
+  }
+  catch (error) {
     return next(error);
   }
 };
 
 exports.postLogin = async (req, res, next) => {
   try {
-    const {
-      login,
-      password
-    } = req.body;
+    const { login, password } = req.body;
     const user = await User.findOne({ login });
     if (!user) {
-      return next(new ValidationError([{
-        key: 'login',
-        msg: 'User by login is not found',
-        path: 'login'
-      }]));
+      return next(
+        new ValidationError([
+          {
+            key: 'login',
+            msg: 'User by login is not found',
+            path: 'login'
+          }
+        ])
+      );
     }
     if (!(await bcrypt.compare(password, user.password))) {
-      return next(new ValidationError([{
-        key: 'login',
-        msg: 'Wrong password',
-        path: 'password'
-      }]));
+      return next(
+        new ValidationError([
+          {
+            key: 'login',
+            msg: 'Wrong password',
+            path: 'password'
+          }
+        ])
+      );
     }
-    const userJWT = jwt.sign({ id: user._id }, process.env.SECRET_KEY,
-      { expiresIn: process.env.ACTIVE_TIME });
-    return res.status(200)
-      .json({
-        message: 'Successful login',
-        jwt: userJWT
-      });
-  } catch (error) {
+    const userJWT = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
+      expiresIn: process.env.ACTIVE_TIME
+    });
+    return res.status(200).json({
+      message: 'Successful login',
+      jwt: userJWT
+    });
+  }
+  catch (error) {
     return next(error);
   }
 };
